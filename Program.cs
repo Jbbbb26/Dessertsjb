@@ -1,74 +1,96 @@
-﻿namespace Dessertsjb
+﻿using System;
+
+namespace Dessertsjb
 
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-
-            int[] price = { 20, 25 };
+            String[] flavors = { "Classic", "Cookis n Cream", "Rocky Road" };
+            int[] price = { 20, 25, 25 };
             Console.WriteLine("Welcome to Graham Bar to Go");
-            Console.WriteLine("Flavors");
-            Console.WriteLine("[1]Classic[20]");
-            Console.WriteLine("[2]Cookis n Cream[25]");
 
-            Console.WriteLine("Enter your Money");
-            int payment = Convert.ToInt32(Console.ReadLine());
-
+            //method calling for payment
+            int payment = getPayment();
             while (true)
-                if (payment >= 20)
+            {
+
+
+                //method calling for flavors
+                displayFlavors();
+                Console.Write("Flavor :");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
                 {
-                    Console.WriteLine("Select Flavor 1 for Classic 2 for Cookis n Cream or 0 to exit");
+                    case 1:
+                    case 2:
+                    case 3:
+                        Console.WriteLine($"You select {flavors[choice - 1]}");
+                        Console.Write("Enter Quantity:");
+                        int quantity = Convert.ToInt16(Console.ReadLine());
+                        int totalPrice = price[choice - 1] * quantity;
+                        if (payment >= totalPrice)
+                        {
+                            payment -= totalPrice;
+                            Console.WriteLine($"You Bought {quantity} of {flavors[choice - 1]}");
+                            Console.WriteLine($"Your total cost is {totalPrice}");
+                            Console.WriteLine($"Your Balance is {payment}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Insufficient Balance, Please Select the right Quantity.");
 
-                    int choice = Convert.ToInt16(Console.ReadLine());
-
-                    if (choice == 0)
-                    {
-                        Console.WriteLine("Thank u, come again");
+                        }
+                        if (payment < 20)
+                        {
+                            Console.WriteLine("You Dont have enough money to buy more.");
+                            Console.WriteLine($"Thank u for purchasing!");
+                            return;
+                        }
                         break;
-                    }
+                    case 0:
+                        Console.WriteLine($"Thank u for purchasing!");
+                        return;
 
-                    else if (choice == 1)
-                    {
-                        if (payment >= price[0])
-                        {
-                            payment = payment - price[0];
-                            Console.WriteLine("You bought Classic flavor");
-                            Console.WriteLine("your balance is " + payment);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Insufficient Balance");
-                        }
-                    }
-                    else if (choice == 2)
-                    {
-                        if (payment >= price[1])
-                        {
-                            payment = payment - price[1];
-                            Console.WriteLine("You bought Cookis n Cream flavor");
-                            Console.WriteLine("your balance is " + payment);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Insufficient Balance");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Please select only from 1 , 2 and 0");
-                    }
+                    default:
+                        Console.WriteLine("Invalid, Please enter a valid option");
+                        break;
                 }
-                else
+            }
+        }
+        //method to display or to call the flavors available
+        static void displayFlavors()
+        {
+            Console.WriteLine("Flavors");
+            Console.WriteLine("[1]Classic 20 php");
+            Console.WriteLine("[2]Cookis n Cream 25 php");
+            Console.WriteLine("[3]Rocky Road 25 php");
+            Console.WriteLine("[0] to exit");
+            Console.WriteLine("---------");
+        }
+        //method to know if the payment is greater than 20 to proceed
+        static int getPayment()
+        {
+            int payment;
+            do
+            {
+                Console.Write("Enter your Money:");
+                payment = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+
+                if (payment < 20)
+
                 {
-                    Console.WriteLine("Insufficient Balance, Continue to exit and thank u come again!");
+                    Console.WriteLine("You dont have enough money to buy");
 
-                    break;
                 }
+            } while (payment < 20);
+            return payment;
         }
 
     }
+
 }
-    
 
 
