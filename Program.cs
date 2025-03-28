@@ -103,6 +103,7 @@ namespace Dessertsjb
         }
         static void displayFlavorsDonut()
         {
+            Console.WriteLine("Donut");
             Console.WriteLine("[4]Classic Bavarian 30 php ");
             Console.WriteLine("[5]Choco Butternut 35php");
             Console.WriteLine("[6]Honey Glazed 40php");
