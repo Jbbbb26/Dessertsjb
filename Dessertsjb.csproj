@@ -7,4 +7,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="DessertPurchasingLogic\**" />
+    <EmbeddedResource Remove="DessertPurchasingLogic\**" />
+    <None Remove="DessertPurchasingLogic\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="DessertPurchasingLogic\DessertPurchasingLogic.csproj" />
+  </ItemGroup>
+
 </Project>

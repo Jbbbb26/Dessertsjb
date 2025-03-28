@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dessertsjb", "Dessertsjb.csproj", "{5F8C6BB3-83F8-47C0-A59A-E076BE8E51CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DessertPurchasingLogic", "DessertPurchasingLogic\DessertPurchasingLogic.csproj", "{AA224E94-174B-388B-D96F-09FFB802237E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5F8C6BB3-83F8-47C0-A59A-E076BE8E51CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F8C6BB3-83F8-47C0-A59A-E076BE8E51CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F8C6BB3-83F8-47C0-A59A-E076BE8E51CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA224E94-174B-388B-D96F-09FFB802237E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA224E94-174B-388B-D96F-09FFB802237E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA224E94-174B-388B-D96F-09FFB802237E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA224E94-174B-388B-D96F-09FFB802237E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
