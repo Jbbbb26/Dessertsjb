@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using DessertPurchasingLogic;
 namespace Dessertsjb
 
@@ -8,91 +9,164 @@ namespace Dessertsjb
         static void Main(string[] args)
         {
 
-
-
-
             String[] flavors = { "Balck Forest", "Pistaccio", "Red Velvet", "Classic Bavarian", "ChocoButternut", "HoneyGlazed" };
             int[] price = { 45, 60, 60, 30, 35, 40 };
+
+        
+
             Console.WriteLine("Arise Dessert Shop");
             Console.WriteLine("--------------");
 
-            String name;
-            String pass;
+            PurchasingProcess process = new PurchasingProcess();
+            
+            String userName = string.Empty;
+            String userPass = string.Empty;
             do
             {
                 Console.WriteLine("Enter Username");
-                name = Console.ReadLine();
+                userName = Console.ReadLine();
                 Console.WriteLine("Enter Password");
-                pass = Console.ReadLine();
+                userPass = Console.ReadLine();
               
-                if (!PurchasingProcess.validateLogin(name, pass))
+                if (!process.ValidateAccountLogin(userName, userPass))
                 {
                     Console.WriteLine("Failed: Incorrect Username or Password. Please try again.");
                 }
-            } while (!PurchasingProcess.validateLogin(name, pass));
+            } while (!process.ValidateAccountLogin(userName, userPass));
 
             Console.WriteLine("-----------");
-            Console.WriteLine($"Welcome to Arise Dessert Shop {name}");
+            Console.WriteLine($"Welcome to Arise Dessert Shop {userName}");
             
             //method calling for payment
 
             int payment = getPayment();
 
-            {
-
-            }
+            PurchasingProcess.ShoppingCart cart = new PurchasingProcess.ShoppingCart();
+            cart.Flavors = flavors;
+            cart.Prices = price;
+           
+            
             while (true)
             {
-                
-
+                int choice;
+                    
                 //method calling for flavors
                 displayFlavorsCake();
                 displayFlavorsDonut();
-                Console.Write("Choose from 1-6 or 0 to exit :");
-                int choice = Convert.ToInt32(Console.ReadLine());
-                
-                switch (choice)
+                Console.WriteLine("[7] View Cart");
+                Console.WriteLine("[8]Checkout");
+                Console.Write("Choose from 1-6 to add item, 7 to view cart , 8 to check out, or 0 to exit: ");
+                String input = Console.ReadLine();
+                if (!int.TryParse(input, out choice))
                 {
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                        Console.WriteLine("Enter Quantity");
+                    Console.WriteLine("Invalid input. Please enter between 0-6 only");
+                    Console.WriteLine("-------------------");
+                    continue;
+                }   
 
-                        int quantity = Convert.ToInt32(Console.ReadLine());
-                        int newBalance = PurchasingProcess.purchasedItem(payment, flavors, price, choice,quantity);
+              
+
+
+                    switch (choice)
+                   
+                {
+                        case 0:
+                        Console.WriteLine("Thank you for purchasing!");
+                        return;
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
                         
-                      
-                        if(newBalance >= 0)
+                        
+                            Console.Write("Enter Quantity: ");
+                        int quantity;
+                        String input1 = Console.ReadLine();
+                        if(!int.TryParse(input1,out quantity) || quantity <= 0)
                         {
-                            payment = newBalance;
-                            Console.WriteLine($"You bought {quantity} of {flavors[choice - 1]}.");
-                            Console.WriteLine($"Total cost: {price[choice - 1] * quantity} PHP.");
-                            Console.WriteLine($"Available balance: {newBalance} PHP.");
-                            Console.WriteLine("");
+                            Console.WriteLine("Please enter valid quantity");
+                            Console.WriteLine("-----------------");
+                            break;
+                        }
+                        cart.addItem(choice,quantity);
+                        
+                        Console.WriteLine($"{quantity} of {flavors[choice - 1]} added to cart successfully!");
+                        break;
+
                            
+                        case 7:
+                            Console.WriteLine("-----Your Cart--------");
+                        if (cart.cartEmpty())
+                        {
+                            Console.WriteLine("Your Cart is Empty");
                         }
                         else
                         {
-                            Console.WriteLine("Insufficient Balance, Please enter a smaller quantity or other item");
-                            Console.WriteLine("--------------");
-                            Console.WriteLine("");
+                            int totalCart = 0;
+                            var cartDetails = cart.GetCartDetails();
+                            foreach (var item in cartDetails)
+                            {
+                                Console.WriteLine($"{item.flavor} x {item.quantity} = {item.subtotal} PHP");
+                                totalCart += item.subtotal;
+
+                            }
+                            Console.WriteLine($"Total in cart: {totalCart}PHP");
+                        }
+                        Console.WriteLine("-----------------------");
+                   
+                        Console.WriteLine("Dou you want to remove an item in your cart?(y/n)");
+                        String removeResponse = Console.ReadLine();
+                        if (removeResponse == "y")
+                        {
+                            Console.WriteLine("Enter the number of item you want to remove:");
+                            String itemtoRemove = Console.ReadLine();
+
+                            if (int.TryParse(itemtoRemove, out int itemIndex) && itemIndex > 0 && itemIndex <= cart.GetCartDetails().Count) ;
+
+                            if (cart.removeItem(itemIndex))
+                            {
+                                Console.WriteLine("Item remove successfully!");
+                            }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("No item to remove");
                         }
 
                         break;
-                    case 0:
-                                Console.WriteLine($"Thank u for purchasing!");
-                                return;
 
-                            default:
-                                Console.WriteLine("Invalid, Please enter a valid option");
+                    case 8:
+                                int totalCost = cart.TotalCost();
+                              
+                                
+                                if (totalCost == 0)
+                                {
+                                    Console.WriteLine("Your cart is empty. Add items before Checkout");
+                                }
+                                if (payment >= totalCost)
+                                {
+                                    payment -= totalCost;
+                                    Console.WriteLine($"Purchase Successful! Total Amount paid: {totalCost} PHP");
+                                    Console.WriteLine($"Remaining Balance{payment}PHP");
+                                    cart.clearCart();
+                                   
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Insufficient Balance. You need {totalCost}PHP to buy this item.");
+                                }
+
                                 break;
-                            }
+                            default:
+                                Console.WriteLine("Invalid, Please enter a valid option(0-8");
+                                Console.WriteLine("----------------");
+                                break;
+                            }    }
             }
-        }
-        //method to display or to call the flavors available
+                //method to display or to call the flavors available
         static void displayFlavorsCake()
         {
             Console.WriteLine("Cake Sliced");
@@ -117,7 +191,7 @@ namespace Dessertsjb
             do
             {
                 Console.WriteLine("");
-                Console.Write("Enter your Money:");
+                Console.Write("Enter your Money 30pesos upwards:");
                 String input = Console.ReadLine()??"";
                 Console.WriteLine();
                 
@@ -137,33 +211,6 @@ namespace Dessertsjb
         }
        
 
-        //static int purchasedItem(int payment, String[] flavors, int[] price, int choice)
-        //{
-        //    Console.WriteLine("Enter Quantity");
-        //    int quantity = Convert.ToInt32(Console.ReadLine());
-        //    int totalPrice = price[choice - 1] * quantity;
-
-        //    if (payment >= totalPrice)
-        //    {
-        //        payment -= totalPrice;
-        //        Console.WriteLine($"You Bought {quantity} of {flavors[choice - 1]}");
-        //        Console.WriteLine($"Your total Cost is {totalPrice}");
-        //        Console.WriteLine($"Your available balance is {payment}");
-
-
-        //        if (payment < 30)
-        //        {
-        //            Console.WriteLine("You cannot purchased more, thank u for buying");
-
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Insufficient Balance Please Select the right Item or Quantity");
-        //    }
-
-        //        return payment;
-        //}
     }
 }
     

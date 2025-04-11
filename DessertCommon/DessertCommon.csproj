@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DesssertDataLogic\DesssertDataLogic.csproj" />
-  </ItemGroup>
-
 </Project>

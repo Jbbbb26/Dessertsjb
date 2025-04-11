@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dessertsjb", "Dessertsjb.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DessertPurchasingLogic", "DessertPurchasingLogic\DessertPurchasingLogic.csproj", "{AA224E94-174B-388B-D96F-09FFB802237E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesssertDataLogic", "DesssertDataLogic\DesssertDataLogic.csproj", "{8996FB2A-DD4C-4B77-866A-49E9D6275148}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DessertCommon", "DessertCommon\DessertCommon.csproj", "{D98B8CA5-8122-41A2-AA20-083D5B49E628}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{AA224E94-174B-388B-D96F-09FFB802237E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA224E94-174B-388B-D96F-09FFB802237E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA224E94-174B-388B-D96F-09FFB802237E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8996FB2A-DD4C-4B77-866A-49E9D6275148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8996FB2A-DD4C-4B77-866A-49E9D6275148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8996FB2A-DD4C-4B77-866A-49E9D6275148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8996FB2A-DD4C-4B77-866A-49E9D6275148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D98B8CA5-8122-41A2-AA20-083D5B49E628}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D98B8CA5-8122-41A2-AA20-083D5B49E628}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D98B8CA5-8122-41A2-AA20-083D5B49E628}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D98B8CA5-8122-41A2-AA20-083D5B49E628}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

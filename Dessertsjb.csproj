@@ -8,9 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DessertCommon\**" />
     <Compile Remove="DessertPurchasingLogic\**" />
+    <Compile Remove="DesssertDataLogic\**" />
+    <EmbeddedResource Remove="DessertCommon\**" />
     <EmbeddedResource Remove="DessertPurchasingLogic\**" />
+    <EmbeddedResource Remove="DesssertDataLogic\**" />
+    <None Remove="DessertCommon\**" />
     <None Remove="DessertPurchasingLogic\**" />
+    <None Remove="DesssertDataLogic\**" />
   </ItemGroup>
 
   <ItemGroup>

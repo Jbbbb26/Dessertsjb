@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DesssertDataLogic\DesssertDataLogic.csproj" />
+    <ProjectReference Include="..\DessertCommon\DessertCommon.csproj" />
   </ItemGroup>
 
 </Project>
