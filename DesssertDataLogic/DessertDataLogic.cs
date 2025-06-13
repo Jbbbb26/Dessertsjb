@@ -14,6 +14,8 @@ namespace DesssertDataLogic
 
         public DessertDataLogic()
         {
+
+            TextFilePurchasedService txtDataService = new TextFilePurchasedService();
             CreateDummyUserAccounts();
         }
 

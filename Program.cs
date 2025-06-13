@@ -9,15 +9,16 @@ namespace Dessertsjb
         static void Main(string[] args)
         {
 
-            String[] flavors = { "Balck Forest", "Pistaccio", "Red Velvet", "Classic Bavarian", "ChocoButternut", "HoneyGlazed" };
-            int[] price = { 45, 60, 60, 30, 35, 40 };
+            
 
         
 
             Console.WriteLine("Arise Dessert Shop");
             Console.WriteLine("--------------");
 
-            PurchasingProcess process = new PurchasingProcess();
+
+        
+        PurchasingProcess process = new PurchasingProcess();
             
             String userName = string.Empty;
             String userPass = string.Empty;
@@ -36,26 +37,28 @@ namespace Dessertsjb
 
             Console.WriteLine("-----------");
             Console.WriteLine($"Welcome to Arise Dessert Shop {userName}");
-            
+
             //method calling for payment
+
+
+            displayFlavorsCake();
+            displayFlavorsDonut();
+
 
             int payment = getPayment();
 
             PurchasingProcess.ShoppingCart cart = new PurchasingProcess.ShoppingCart();
-            cart.Flavors = flavors;
-            cart.Prices = price;
+            cart.Flavors = PurchasingProcess.Flavors;
+            cart.Prices = PurchasingProcess.Prices;
            
             
-            while (true)
+            while (true) 
             {
                 int choice;
                     
                 //method calling for flavors
-                displayFlavorsCake();
-                displayFlavorsDonut();
-                Console.WriteLine("[7] View Cart");
-                Console.WriteLine("[8]Checkout");
-                Console.Write("Choose from 1-6 to add item, 7 to view cart , 8 to check out, or 0 to exit: ");
+             
+                Console.Write("Choose from (1-6) to add item, [7] to view cart , [8] to check out, or [0] to exit: ");
                 String input = Console.ReadLine();
                 if (!int.TryParse(input, out choice))
                 {
@@ -92,7 +95,7 @@ namespace Dessertsjb
                         }
                         cart.addItem(choice,quantity);
                         
-                        Console.WriteLine($"{quantity} of {flavors[choice - 1]} added to cart successfully!");
+                        Console.WriteLine($"{quantity} of {PurchasingProcess.Flavors[choice - 1]} added to cart successfully!");
                         break;
 
                            

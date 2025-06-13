@@ -10,7 +10,7 @@ namespace DessertPurchasingLogic
     {
 
         private String _pass = "111111";
-        static String _userName = "user1";
+        private String _userName = "user1";
         public String userName { get; set; }
             public String Pass
         {

@@ -1,34 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
-namespace DessertCommon
-{
-   public class userAccounts
+    namespace DessertCommon
     {
-
-        private String _pass = "111111";
-        static String _userName = "user1";
-        public String userName { get; set; }
-            public String Pass
+       public class userAccounts
         {
-            get { return _pass; }
-            set
+
+            private String _pass = "111111";
+            static String _userName = "user1";
+            public String userName { get; set; }
+                public String Pass
             {
-                if (value.Length == 6)
+                get { return _pass; }
+                set
                 {
-                    _pass = value;
+                    if (value.Length == 6)
+                    {
+                        _pass = value;
+                    }
                 }
+
             }
+   
+
+
+
 
         }
-      
-
-
-
-    }
-    }
+        }
 
 

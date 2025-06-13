@@ -10,9 +10,10 @@ namespace DessertPurchasingLogic
     public class PurchasingProcess
     {
 
+        public static  string[] Flavors = { "Black Forest", "Pistachio", "Red Velvet", "Classic Bavarian", "ChocoButternut", "HoneyGlazed" };
+        public static  int[] Prices = { 45, 60, 60, 30, 35, 40 };
 
 
-        
 
         public static int purchasedItem(int payment, String[] flavors, int[] price, int choice, int quantity)
         {
