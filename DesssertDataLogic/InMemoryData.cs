@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DesssertDataLogic
 {
-    class InMemoryData
+    public class InMemoryData
     {
 
         public class DessertDataLogic
@@ -16,8 +16,8 @@ namespace DesssertDataLogic
 
             public DessertDataLogic()
             {
-              
-                
+
+
                 CreateDummyUserAccounts();
             }
 
@@ -52,9 +52,12 @@ namespace DesssertDataLogic
                 }
                 return false;
             }
-
+            public List<userAccounts> GetAccounts()
+            {
+                return accounts;
+            }
         }
-    }
 
+    }
 }
 
