@@ -1,6 +1,7 @@
 ﻿using DesssertDataLogic;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,18 +16,10 @@ namespace DessertPurchasingLogic
 
 
 
-        public static int purchasedItem(int payment, String[] flavors, int[] price, int choice, int quantity)
+        public static void purchasedItem(string userName,int flavors, int payment, int change)
         {
 
-            int totalPrice = price[choice - 1] * quantity;
-
-            if (payment >= totalPrice)
-            {
-                payment -= totalPrice;
-
-                return payment;
-            }
-            return -1;
+            
         }
         public bool ValidateAccountLogin(String userName, String userPass)
         {

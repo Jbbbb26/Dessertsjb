@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 using DessertPurchasingLogic;
 namespace Dessertsjb
 
@@ -154,6 +155,10 @@ namespace Dessertsjb
                                     payment -= totalCost;
                                     Console.WriteLine($"Purchase Successful! Total Amount paid: {totalCost} PHP");
                                     Console.WriteLine($"Remaining Balance{payment}PHP");
+
+                            PurchasingProcess.purchasedItem(userName, choice, choice, payment);
+
+                            
                                     cart.clearCart();
                                    
                                 }

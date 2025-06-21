@@ -5,40 +5,82 @@ using System.IO;
 
 namespace DesssertDataLogic
 {
-    public class TextFilePurchasedService : IPurchaseDataService
+    public class TextFilePurchasedService
     {
-        private readonly string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "purchased.txt");
-
-        public void SavePurchasedRecord(PurchaseRecord record)
+        string filePath = "purchased.txt";
+        List<userAccounts> useraccounts = new List<userAccounts>();
+        public TextFilePurchasedService()
         {
-            Console.WriteLine("ggggg");
-            var line = $"{record.UserName}|{record.Items}|{record.Payment}|{record.Change}";
-            File.AppendAllText(filePath, line + Environment.NewLine);
+            getDataFromFile();
         }
 
-        public List<PurchaseRecord> LoadAllPurchasedRecords()
+
+        private void getDataFromFile()
         {
-            var records = new List<PurchaseRecord>();
+            useraccounts = new List<userAccounts>();
+
             if (!File.Exists(filePath))
-                return records;
+            {
+                Console.WriteLine("[DEBUG] purchased.txt not found.");
+                return;
+            }
+            var userAccounts = File.ReadAllLines(filePath);
+            if (!File.Exists(filePath)) return;
 
             var lines = File.ReadAllLines(filePath);
             foreach (var line in lines)
             {
                 var parts = line.Split('|');
-                if (parts.Length == 4)
+
+
+
+                if (parts.Length >=3 && parts[0] == "ACC")
                 {
-                    records.Add(new PurchaseRecord
+                    userAccounts user = new userAccounts
                     {
-                        UserName = parts[0],
-                        Items = parts[1],
-                        Payment = int.Parse(parts[2]),
-                        Change = int.Parse(parts[3])
+                        userName = parts[1].Trim(),
+                        Pass = parts[2].Trim()
+                    };
+                    useraccounts.Add(user);
+                }
+            }
+        }
+    
+       public List<userAccounts> GetAccounts()
+        {
+            return useraccounts;
+        }
+        public void SavePurchase(PurchaseRecord record)
+        {
+            string line = $"PUR|{record.UserName}|{record.Items}|Payment: {record.Payment}|Change: {record.Change}";
+            File.AppendAllLines(filePath, new[] { line });
+        }
+        public List <PurchaseRecord> GetAllPurchases()
+        {
+            var purchases = new List<PurchaseRecord>();
+            if (!File.Exists(filePath)) return purchases;
+
+            var lines = File.ReadAllLines(filePath);
+            foreach (var line in lines)
+            {
+                var parts = line.Split('|');
+                if (parts.Length == 5 && parts[0] == "PUR")
+                {
+                    purchases.Add(new PurchaseRecord
+                    {
+                        UserName = parts[1],
+                        Items = parts[2],
+                        Payment = int.Parse(parts[3].Replace("Payment: ", "")),
+                        Change = int.Parse(parts[4].Replace("Change: ", ""))
                     });
                 }
             }
-
-            return records;
+            return purchases;
         }
     }
-}
+        //    public void addAcount(userAccounts useraccounts)
+        //    {
+
+        //    }
+        //}
+    }

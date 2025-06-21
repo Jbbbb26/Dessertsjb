@@ -16,7 +16,10 @@ namespace DesssertDataLogic
         {
 
             TextFilePurchasedService txtDataService = new TextFilePurchasedService();
-            CreateDummyUserAccounts();
+            accounts = txtDataService.GetAccounts();
+
+                    CreateDummyUserAccounts();
+                
         }
 
 
