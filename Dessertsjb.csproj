@@ -20,7 +20,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="DessertCommon\DessertCommon.csproj" />
     <ProjectReference Include="DessertPurchasingLogic\DessertPurchasingLogic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DessertCommon">
+      <HintPath>DessertPurchasingLogic\bin\Debug\net8.0\DessertCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="DessertPurchasingLogic">
+      <HintPath>DessertPurchasingLogic\bin\Debug\net8.0\DessertPurchasingLogic.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -9,10 +9,10 @@ namespace DesssertDataLogic
 
     public interface IPurchaseDataService
     {
-       public void SavePurchasedRecord(PurchaseRecord record);
+        public List<userAccounts> GetAccounts();
+        public List<PurchaseRecord> GetAllPurchases();
+        public void SavePurchase(PurchaseRecord record);
         
-            List<PurchaseRecord> LoadAllPurchasedRecords();
-        }
-    }
 
-//
+    }
+}

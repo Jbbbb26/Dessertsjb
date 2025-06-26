@@ -5,82 +5,76 @@ using System.IO;
 
 namespace DesssertDataLogic
 {
-    public class TextFilePurchasedService
+    public class TextFilePurchasedService : IPurchaseDataService
     {
-        string filePath = "purchased.txt";
+        string accountfilePath = "accounts.txt";
+        string purchasefilePath = "purchased.txt";
         List<userAccounts> useraccounts = new List<userAccounts>();
+        List<PurchaseRecord> purchaseRecords = new List<PurchaseRecord>();
+
         public TextFilePurchasedService()
         {
             getDataFromFile();
         }
-
-
-        private void getDataFromFile()
+        public void getDataFromFile()
         {
-            useraccounts = new List<userAccounts>();
-
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine("[DEBUG] purchased.txt not found.");
-                return;
-            }
-            var userAccounts = File.ReadAllLines(filePath);
-            if (!File.Exists(filePath)) return;
-
-            var lines = File.ReadAllLines(filePath);
-            foreach (var line in lines)
-            {
-                var parts = line.Split('|');
-
-
-
-                if (parts.Length >=3 && parts[0] == "ACC")
+                var lines = File.ReadAllLines(accountfilePath);
+                foreach (string line in lines)
                 {
-                    userAccounts user = new userAccounts
+                    var parts = line.Split(',');
+                    if (parts.Length > 0)
                     {
-                        userName = parts[1].Trim(),
-                        Pass = parts[2].Trim()
-                    };
-                    useraccounts.Add(user);
+                        userAccounts account = new userAccounts
+                        {
+                            userName = parts[0],
+                            Pass = parts[1]
+                        };
+                        useraccounts.Add(account);
+                    }
                 }
-            }
         }
-    
-       public List<userAccounts> GetAccounts()
+        public List<userAccounts> GetAccounts()
         {
             return useraccounts;
         }
+        public List<PurchaseRecord> GetAllPurchases()
+        {
+           
+                var lines = File.ReadAllLines(purchasefilePath);
+                foreach (string line in lines)
+                {
+                    var parts = line.Split(',');
+                    if (parts.Length == 5)
+                    {
+                        PurchaseRecord record = new PurchaseRecord
+                        {
+                            UserName = parts[0],
+                            Items = parts[1],
+                            Price = int.Parse(parts[2]),
+                            Quantity = int.Parse(parts[3]),
+                            Subtotal = int.Parse(parts[4])
+                        };
+                        purchaseRecords.Add(record);
+                    }
+                }
+            
+            return purchaseRecords;
+        }
+
         public void SavePurchase(PurchaseRecord record)
         {
-            string line = $"PUR|{record.UserName}|{record.Items}|Payment: {record.Payment}|Change: {record.Change}";
-            File.AppendAllLines(filePath, new[] { line });
-        }
-        public List <PurchaseRecord> GetAllPurchases()
-        {
-            var purchases = new List<PurchaseRecord>();
-            if (!File.Exists(filePath)) return purchases;
-
-            var lines = File.ReadAllLines(filePath);
-            foreach (var line in lines)
+            foreach (var account in useraccounts)
             {
-                var parts = line.Split('|');
-                if (parts.Length == 5 && parts[0] == "PUR")
+                if (account.userName == record.UserName)
                 {
-                    purchases.Add(new PurchaseRecord
-                    {
-                        UserName = parts[1],
-                        Items = parts[2],
-                        Payment = int.Parse(parts[3].Replace("Payment: ", "")),
-                        Change = int.Parse(parts[4].Replace("Change: ", ""))
-                    });
+                    string line = $"{record.UserName},{record.Items},{record.Price},{record.Quantity},{record.Subtotal}\n";
+                    File.AppendAllText(purchasefilePath, line);
+                    return;
                 }
             }
-            return purchases;
         }
-    }
-        //    public void addAcount(userAccounts useraccounts)
-        //    {
+        
+        
 
-        //    }
-        //}
     }
+}

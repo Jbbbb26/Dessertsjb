@@ -10,48 +10,27 @@ namespace DesssertDataLogic
 {
     public class DessertDataLogic
     {
-         List<userAccounts> accounts = new List<userAccounts>();
+        IPurchaseDataService interfaceDL; 
+        List<userAccounts> accounts = new List<userAccounts>();
 
         public DessertDataLogic()
         {
-
-            TextFilePurchasedService txtDataService = new TextFilePurchasedService();
-            accounts = txtDataService.GetAccounts();
-
-                    CreateDummyUserAccounts();
-                
+            interfaceDL = new InMemoryData();
+            //interfaceDL = new TextFilePurchasedService();
+            //interfaceDL = new JsonPurchasedService();
+            //interfaceDL = new dbPurchasedService();
         }
-
-
-        public void CreateDummyUserAccounts()
+        public List<userAccounts> GetAccounts()
         {
-            userAccounts account1 = new userAccounts();
-            account1.userName = "Benedict";
-          
-            account1.Pass = "123456";
-
-            accounts.Add(account1);
-
-            userAccounts accounts2 = new userAccounts
-            {
-                userName = "John",
-              
-                Pass = "111111"
-            };
-
-            accounts.Add(accounts2);
-
+            return interfaceDL.GetAccounts();
         }
-        public bool ValidateAccountLogin(String userName, String userPass)
+        public List<PurchaseRecord> GetAllPurchases()
         {
-            foreach(var account in accounts)
-            {
-                if(account.userName == userName && account.Pass == userPass)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return interfaceDL.GetAllPurchases();
+        }
+        public void SavePurchase(PurchaseRecord record)
+        {
+            interfaceDL.SavePurchase(record);
         }
 
     }
