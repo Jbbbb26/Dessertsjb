@@ -15,8 +15,8 @@ namespace DesssertDataLogic
 
         public DessertDataLogic()
         {
-            interfaceDL = new InMemoryData();
-            //interfaceDL = new TextFilePurchasedService();
+            //interfaceDL = new InMemoryData();
+            interfaceDL = new TextFilePurchasedService();
             //interfaceDL = new JsonPurchasedService();
             //interfaceDL = new dbPurchasedService();
         }
