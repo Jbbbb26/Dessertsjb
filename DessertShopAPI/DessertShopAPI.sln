@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DessertShopAPI", "DessertShopAPI.csproj", "{370F86D5-A8ED-4C16-8189-3A3EB4D44762}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{370F86D5-A8ED-4C16-8189-3A3EB4D44762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{370F86D5-A8ED-4C16-8189-3A3EB4D44762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{370F86D5-A8ED-4C16-8189-3A3EB4D44762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{370F86D5-A8ED-4C16-8189-3A3EB4D44762}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {148D925D-0DC0-4553-9A08-578B3ADC1A85}
+	EndGlobalSection
+EndGlobal

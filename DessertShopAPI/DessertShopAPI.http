@@ -1,0 +1,6 @@
+@DessertShopAPI_HostAddress = http://localhost:5220
+
+GET {{DessertShopAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
