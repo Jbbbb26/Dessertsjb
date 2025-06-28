@@ -10,13 +10,19 @@
   <ItemGroup>
     <Compile Remove="DessertCommon\**" />
     <Compile Remove="DessertPurchasingLogic\**" />
+    <Compile Remove="DessertShopAPI\**" />
     <Compile Remove="DesssertDataLogic\**" />
+    <Compile Remove="guiDessertShop\**" />
     <EmbeddedResource Remove="DessertCommon\**" />
     <EmbeddedResource Remove="DessertPurchasingLogic\**" />
+    <EmbeddedResource Remove="DessertShopAPI\**" />
     <EmbeddedResource Remove="DesssertDataLogic\**" />
+    <EmbeddedResource Remove="guiDessertShop\**" />
     <None Remove="DessertCommon\**" />
     <None Remove="DessertPurchasingLogic\**" />
+    <None Remove="DessertShopAPI\**" />
     <None Remove="DesssertDataLogic\**" />
+    <None Remove="guiDessertShop\**" />
   </ItemGroup>
 
   <ItemGroup>

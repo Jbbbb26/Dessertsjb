@@ -55,7 +55,7 @@ namespace guiDessertShop
             {
                 int rowIndex = dataGridView1.SelectedRows[0].Index;
 
-                bool removed = process.removeItem(rowIndex + 1); // +1 since logic expects 1-based
+                bool removed = process.removeItem(rowIndex + 1); 
 
                 if (removed)
                 {
